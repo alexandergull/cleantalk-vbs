@@ -92,7 +92,7 @@ class CleantalkClass
      ' Construct JSON data
 
      private sub constructJSONData()
-          request_json = "{""auth_key"":""" & auth_key & """,""method_name"":""" & method_name & """,""sender_email"":""" & user_email & """,""sender_ip"":""" & user_ip & """,""sender_nickname"":""" & user_name & """,""js_on"":""" & js_on & """,""submit_time"":""" & submit_time & """, ""event_token"":""" & event_token & """}"
+          request_json = "{""auth_key"":""" & auth_key & """,""agent"":""" & agent & """,""method_name"":""" & method_name & """,""sender_email"":""" & user_email & """,""sender_ip"":""" & user_ip & """,""sender_nickname"":""" & user_name & """,""js_on"":""" & js_on & """,""submit_time"":""" & submit_time & """, ""event_token"":""" & event_token & """}"
      end sub
 
      ' Send request to API
@@ -168,20 +168,20 @@ end class
 
 ' Usage example
 ' Init a Cleantalk class instance
-dim Cleantalk : Set Cleantalk = (New CleantalkClass)("a3asa2aby9azazy", "check_message")
+dim Cleantalk : Set Cleantalk = (New CleantalkClass)("your_access_key", "check_newuser")
 
 ' there can be placed your site code
 ' SOME LOGIC BEFORE CLEANTALK CHECK, like getting user data from form
 
 ' Init user data when the properties is ready
-Cleantalk.setUserEmail("regmeon@ya.ru") ' Required, if unused or empty - empty value will be used
+Cleantalk.setUserEmail("stop_email@example.com") ' Required, if unused or empty - empty value will be used
 Cleantalk.setUserIP("10.10.10.10") ' Required, if unused or empty - empty value will be used
 Cleantalk.setUserName("John Doe") ' Optional, if unused or empty - empty value will be used
-Cleantalk.setUserJSState("0") ' Optional, if unused or empty - 1 will be used
-Cleantalk.setUserSubmitTime("0") ' Optional, if unused or empty - 5 will be used
+Cleantalk.setUserJSState("1") ' Optional, if unused or empty - 1 will be used
+Cleantalk.setUserSubmitTime("5") ' Optional, if unused or empty - 5 will be used
 
 ' Set form event token, you would attach a JS script to the page with form to use this, read more in README.md
-Cleantalk.setFormEventToken("a_32_digits_event_token_value") ' Optional, if empty - empty value will be used
+Cleantalk.setFormEventToken("a_32_symbols_event_token_value") ' Optional, if empty - empty value will be used
 
 ' Send request to API
 Cleantalk.sendRequest
@@ -199,3 +199,6 @@ else
      'do something if validation failed
      wscript.echo "Validation failed. Code: " & Cleantalk.getCodes & " Comment: " & Cleantalk.getComment
 end if
+
+' Clean up
+Set Cleantalk = Nothing
